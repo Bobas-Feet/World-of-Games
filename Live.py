@@ -1,10 +1,13 @@
+# 24/2/2023
+
 import GuessGame
 import MemoryGame
 import CurrencyRouletteGame
 
 
 def welcome():
-    name = input('What is your name? [Only letters allowed in username and no spaces] ')
+    name = input('What is your name? [You may use only letters,'
+                 '\n no numbers or special symbols (!@#$%^) and no spaces] ')
 
     try:
         if any([i > 'z' or i < 'a' for i in name]):
@@ -13,8 +16,8 @@ def welcome():
         elif name == '' or name == ' ':
             print('Error. No blanks')
             welcome()
-        elif len(name) > 15:
-            print('Error. Username too long')
+        elif 3 >= len(name) >= 15:
+            print('Error. Username either too long or too short')
             welcome()
         else:
             print(f'Welcome {name}, to the World of Games (WoG).'
@@ -50,27 +53,7 @@ def load_game():
                 print(f'{game3}: Try and guess the value of a random'
                       f' amount of USD in ILS.')
                 difficulty = int(input('What difficulty would you like to play? [1/2/3/4/5] '))
-                CurrencyRouletteGame.play()
+                CurrencyRouletteGame.play(difficulty)
 
         except ValueError:
             print('Invalid input. You can only enter numbers')
-
-#
-#
-#
-#
-#
-#         # difficulty = int()
-#         # if difficulty == 1:
-#         #     print('Very Easy')
-#         # elif difficulty == 2:
-#         #     print('Easy')
-#         # elif difficulty == 3:
-#         #     print('Medium')
-#         # elif difficulty == 4:
-#         #     print('Hard')
-#         # elif difficulty == 5:
-#         #     print('Very Hard')
-#         # else:
-#         #     print("Invalid input. Your only options are 1-5. let's start over")
-#         #     load_game()
