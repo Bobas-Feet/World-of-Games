@@ -1,3 +1,5 @@
+# 24/2/2023
+
 import random
 
 
@@ -14,7 +16,7 @@ def get_guess_from_user(difficulty, secret_number):
         count += 1
         guess = int(input('Now, try and guess what number the computer is thinking about '))
 
-        if int(count) >= 3:
+        if int(count) > 3:
             print('You lost')
             quit()
         else:
