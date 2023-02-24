@@ -1,3 +1,6 @@
+
+# 24/2/23
+
 import random
 import time
 
@@ -6,11 +9,11 @@ def generate_sequence(difficulty):
 
     try:
         if difficulty == '' or difficulty == ' ':
-            print('Error. No blank entries')
+            print('Error. You must provide an answer.')
         difficulty = int(difficulty)
 
         rng = []
-        for i in range(0, difficulty):
+        for i in range(difficulty):
             rng.append(random.randint(1, 101))
         print(rng)
 
@@ -24,32 +27,35 @@ def generate_sequence(difficulty):
         print('Error')
 
 
-def get_list_from_user(rng, difficulty):
+def get_list_from_user(difficulty):
 
-    for i in range(0, difficulty):
-        print('What numbers do you remember seeing? ')
-        n = int(input())
-        if n == rng[i]:
-            print('Correct')
-        else:
-            print('Wrong. You need to work on you perception more...')
-            quit()
-            break
-    return rng
+    n = []
+    print(f"Let's begin the game. Insert {difficulty} numbers:")
+    for i in range(difficulty):
+        n.append(int(input('What numbers do you remember seeing in the sequence above? ')))
+
+    return n
 
 
 def is_list_equal(n, rng):
-    compare = 'False'
-    if set(n) == set(rng):
-        compare = 'True'
-    return compare
+
+    n.sort()
+    rng.sort()
+    if rng == n:
+        return True
+    else:
+        return False
 
 
 def play(difficulty):
+
     rng = generate_sequence(difficulty)
-    n = get_list_from_user(rng, difficulty)
+    n = get_list_from_user(difficulty)
     is_list_equal(n, rng)
-    if is_list_equal(n, rng):
-        return 'Yay'
+    if is_list_equal(n=n, rng=rng):
+        print('Yay. You got all the answers right.')
+        quit()
     else:
-        return 'Fuck'
+        print('Well, Fuck. You lost.')
+        quit()
+
